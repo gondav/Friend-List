@@ -3,9 +3,11 @@ import {
   Model,
   Column,
   AllowNull,
-  NotEmpty
+  NotEmpty,
+  HasMany
 } from 'sequelize-typescript';
 import { IFoodDomainModel } from './domainModels/IFoodDomainModel';
+import Friend from './friend.model';
 
 @Table({
   tableName: 'food',
@@ -16,4 +18,7 @@ export default class Food extends Model implements IFoodDomainModel {
   @NotEmpty
   @Column
   name: string;
+
+  @HasMany(() => Friend)
+  friends: Friend[];
 }
