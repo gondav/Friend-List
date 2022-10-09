@@ -44,7 +44,7 @@ export const db = {
       await Food.bulkCreate(food);
       await Friend.bulkCreate(friends);
     } catch (error) {
-      console.log(error);
+      console.error('Unable to fill up tables with test data:', error);
     }
   }
 };
