@@ -1,4 +1,11 @@
-import { Model, Table, Column, DataType } from 'sequelize-typescript';
+import {
+  Model,
+  Table,
+  Column,
+  DataType,
+  AllowNull,
+  NotEmpty
+} from 'sequelize-typescript';
 import { IRelationshipStatusDomainModel } from './domainModels/IRelationshipDomainModel';
 import { RelationshipStatusType } from './enums/relationshipStatusType.enum';
 
@@ -10,6 +17,8 @@ export default class RelationshipStatus
   extends Model
   implements IRelationshipStatusDomainModel
 {
+  @AllowNull(false)
+  @NotEmpty
   @Column({
     type: DataType.ENUM({ values: Object.keys(RelationshipStatusType) })
   })
