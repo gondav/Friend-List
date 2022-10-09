@@ -1,6 +1,7 @@
 import Food from '../models/food.model';
 import Friend from '../models/friend.model';
 import RelationshipStatus from '../models/relationshipStatus.model';
+import { IFriendRequestModel } from 'src/models/requestModels/IFriendRequestModel';
 
 export const friendRepository = {
   getFriendsWithAllAttributes(): Promise<Friend[]> {
@@ -14,5 +15,9 @@ export const friendRepository = {
       },
       include: [Food, RelationshipStatus]
     });
+  },
+
+  createFriend(friendAttributes: IFriendRequestModel): Promise<Friend> {
+    return Friend.create(<never>friendAttributes);
   }
 };
