@@ -4,10 +4,12 @@ import {
   Column,
   DataType,
   AllowNull,
-  NotEmpty
+  NotEmpty,
+  HasMany
 } from 'sequelize-typescript';
 import { IRelationshipStatusDomainModel } from './domainModels/IRelationshipDomainModel';
 import { RelationshipStatusType } from './enums/relationshipStatusType.enum';
+import Friend from './friend.model';
 
 @Table({
   tableName: 'relationshipStatus',
@@ -23,4 +25,7 @@ export default class RelationshipStatus
     type: DataType.ENUM({ values: Object.keys(RelationshipStatusType) })
   })
   relationshipStatus: RelationshipStatusType;
+
+  @HasMany(() => Friend)
+  friends: Friend[];
 }
