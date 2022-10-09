@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { IApiError } from '../models/IApiError';
+import { IApiError } from '../models/errorModels/IApiError';
 
 export default function errorHandler(
   error: IApiError | Error,
