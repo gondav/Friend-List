@@ -19,5 +19,24 @@ export const friendRepository = {
 
   createFriend(friendAttributes: IFriendRequestModel): Promise<Friend> {
     return Friend.create(<never>friendAttributes);
+  },
+
+  updateFriend(
+    id: number,
+    friendAttributes: IFriendRequestModel
+  ): Promise<number[]> {
+    return Friend.update(friendAttributes, {
+      where: {
+        id
+      }
+    });
+  },
+
+  deleteFriend(id: number): Promise<number> {
+    return Friend.destroy({
+      where: {
+        id
+      }
+    });
   }
 };
