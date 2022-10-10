@@ -5,7 +5,8 @@ import {
   NotEmpty,
   Column,
   Unique,
-  ForeignKey
+  ForeignKey,
+  BelongsTo
 } from 'sequelize-typescript';
 import { IFriendDomainModel } from './domainModels/IFriendDomainModel';
 import Food from './food.model';
@@ -34,7 +35,13 @@ export default class Friend extends Model implements IFriendDomainModel {
   @Column
   favFoodId: number;
 
+  @BelongsTo(() => Food)
+  food: Food;
+
   @ForeignKey(() => RelationshipStatus)
   @Column
   relationshipStatusId: number;
+
+  @BelongsTo(() => RelationshipStatus)
+  relationshipStatus: RelationshipStatus;
 }
