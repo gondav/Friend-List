@@ -42,7 +42,36 @@ export const friendService = {
     return await friendRepository.createFriend(mappedFriendAttributes);
   },
 
-  async updateFriend() {},
+  async updateFriend(
+    id: number,
+    friendAttributes: IFriendRequestViewModel
+  ): Promise<void> {
+    const { favFood } = friendAttributes;
+
+    let food = await foodRepository.getFoodByName(favFood);
+
+    if (!food) {
+      food = await foodRepository.createFood(favFood);
+    }
+
+    if (!food) {
+      Promise.reject(serverError('Cannot update friend'));
+    }
+
+    const mappedFriendAttributes = this.mapFriendRequestViewModel(
+      friendAttributes,
+      food.id
+    );
+
+    const numberOfUpdates = await friendRepository.updateFriend(
+      id,
+      mappedFriendAttributes
+    );
+
+    if (numberOfUpdates[0] === 0) {
+      Promise.reject(serverError('Cannot update friend'));
+    }
+  },
 
   async deleteFriend(id: number): Promise<void> {
     const numOfDeletedFriend = await friendRepository.deleteFriend(id);
