@@ -1,4 +1,4 @@
-import { IApiError } from '../models/IApiError';
+import { IApiError } from '../models/errorModels/IApiError';
 
 const generalError =
   (status: number) =>
@@ -10,3 +10,4 @@ const generalError =
   };
 
 export const serverError = generalError(500);
+export const notFoundError = generalError(404);

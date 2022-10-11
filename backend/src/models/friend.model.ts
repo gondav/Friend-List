@@ -4,7 +4,6 @@ import {
   AllowNull,
   NotEmpty,
   Column,
-  Unique,
   ForeignKey,
   BelongsTo
 } from 'sequelize-typescript';
@@ -24,7 +23,6 @@ export default class Friend extends Model implements IFriendDomainModel {
 
   @AllowNull(false)
   @NotEmpty
-  @Unique(true)
   @Column
   email: string;
 
