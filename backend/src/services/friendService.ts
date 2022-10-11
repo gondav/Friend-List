@@ -1,6 +1,9 @@
 import Friend from '../models/friend.model';
 import { friendRepository } from '../repositories/friendRepository';
 import { notFoundError, serverError } from './errorCreatorService';
+import { IFriendRequestViewModel } from '../models/requestModels/IFriendRequestViewModel';
+import { foodRepository } from '../repositories/foodRepository';
+import { IFriendRequestModel } from '../models/requestModels/IFriendRequestModel';
 
 export const friendService = {
   async getFriendsWithAllAttributes(): Promise<Friend[]> {
@@ -16,7 +19,28 @@ export const friendService = {
     return friend;
   },
 
-  async createFriend() {},
+  async createFriend(
+    friendAttributes: IFriendRequestViewModel
+  ): Promise<Friend> {
+    const { favFood } = friendAttributes;
+
+    let food = await foodRepository.getFoodByName(favFood);
+
+    if (!food) {
+      food = await foodRepository.createFood(favFood);
+    }
+
+    if (!food) {
+      Promise.reject(serverError('Cannot save friend'));
+    }
+
+    const mappedFriendAttributes = this.mapFriendRequestViewModel(
+      friendAttributes,
+      food.id
+    );
+
+    return await friendRepository.createFriend(mappedFriendAttributes);
+  },
 
   async updateFriend() {},
 
@@ -26,5 +50,14 @@ export const friendService = {
     if (!numOfDeletedFriend) {
       return Promise.reject(serverError('Unable to delete friend'));
     }
+  },
+
+  mapFriendRequestViewModel(
+    friendAttributes: IFriendRequestViewModel,
+    favFoodId: number
+  ): IFriendRequestModel {
+    const { name, email, comment, relationshipStatusId } = friendAttributes;
+
+    return { name, email, comment, favFoodId, relationshipStatusId };
   }
 };
