@@ -5,6 +5,14 @@ export const foodRepository = {
     return Food.findAll();
   },
 
+  getFoodByName(name: string): Promise<Food | null> {
+    return Food.findOne({
+      where: {
+        name
+      }
+    });
+  },
+
   createFood(name: string): Promise<Food> {
     return Food.create({ name });
   }
