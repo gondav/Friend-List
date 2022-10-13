@@ -39,7 +39,7 @@ export class BaseHttpService {
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  updateItem<T>(endpoint: string, id: number, item: T): Observable<T> {
+  updateItem<T>(endpoint: string, id: number, item: any): Observable<T> {
     return this.http
       .put<T>(`${this.baseURL}/${endpoint}/${id}`, item, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
