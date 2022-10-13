@@ -31,4 +31,15 @@ export class FriendService {
       friendAttributes
     );
   }
+
+  updateFriend(
+    friendAttributes: IFriendRequestModel,
+    id: number
+  ): Observable<IFriendResponseModel> {
+    return this.baseHttpService.updateItem<IFriendResponseModel>(
+      environment.friendEndpoint,
+      id,
+      friendAttributes
+    );
+  }
 }
