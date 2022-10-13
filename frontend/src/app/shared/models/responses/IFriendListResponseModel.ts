@@ -1,5 +1,5 @@
-import { IFriendListViewModel } from '../viewmodels/IFriendListViewModel';
+import { IFriendViewModel } from '../viewmodels/IFriendViewModel';
 
 export interface IFriendListResponseModel {
-  friendList: IFriendListViewModel[];
+  friendList: IFriendViewModel[];
 }

@@ -1,4 +1,4 @@
-export interface IFriendListViewModel {
+export interface IFriendViewModel {
   id: number;
   name: string;
   email: string;
