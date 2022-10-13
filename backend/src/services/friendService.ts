@@ -31,7 +31,7 @@ export const friendService = {
     }
 
     if (!food) {
-      Promise.reject(serverError('Cannot save friend'));
+      return Promise.reject(serverError('Cannot save friend'));
     }
 
     const mappedFriendAttributes = this.mapFriendRequestViewModel(
@@ -55,7 +55,7 @@ export const friendService = {
     }
 
     if (!food) {
-      Promise.reject(serverError('Cannot update friend'));
+      return Promise.reject(serverError('Cannot update friend'));
     }
 
     const mappedFriendAttributes = this.mapFriendRequestViewModel(
@@ -69,7 +69,7 @@ export const friendService = {
     );
 
     if (numberOfUpdates[0] === 0) {
-      Promise.reject(serverError('Cannot update friend'));
+      return Promise.reject(serverError('Cannot update friend'));
     }
   },
 
