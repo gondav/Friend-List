@@ -27,6 +27,18 @@ export class BaseHttpService {
       .pipe(retry(2), catchError(this.handleError));
   }
 
+  getItemByParam<T>(endpoint: string, param: number | string): Observable<T> {
+    return this.http
+      .get<T>(`${this.baseURL}/${endpoint}/${param}`)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  createItem<T>(endpoint: string, item: any): Observable<T> {
+    return this.http
+      .post<T>(`${this.baseURL}/${endpoint}`, item, this.httpOptions)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse): Observable<never> {
     const errorMsg =
       error.error instanceof ErrorEvent
