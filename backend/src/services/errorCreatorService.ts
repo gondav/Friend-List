@@ -12,3 +12,4 @@ const generalError =
 export const serverError = generalError(500);
 export const notFoundError = generalError(404);
 export const badRequestError = generalError(400);
+export const notAcceptableError = generalError(406);
