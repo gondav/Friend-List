@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { IFriendListResponseModel } from '../../shared/models/responses/IFriendListResponseModel';
-import { IFriendListViewModel } from '../../shared/models/viewmodels/IFriendListViewModel';
+import { IFriendViewModel } from '../../shared/models/viewmodels/IFriendViewModel';
 import { environment } from '../../../environments/environment';
 import { BaseHttpService } from '../base-service/base.service';
 
@@ -11,9 +11,13 @@ import { BaseHttpService } from '../base-service/base.service';
 export class FriendService {
   constructor(private baseHttpService: BaseHttpService) {}
 
-  getFriendList(): Observable<IFriendListViewModel[]> {
+  getFriendList(): Observable<IFriendViewModel[]> {
     return this.baseHttpService
       .getItems<IFriendListResponseModel>(environment.friendEndpoint)
       .pipe(map((response) => response.friendList));
+  }
+
+  getFriend(id: number): Observable<IFriendViewModel> {
+    return this.baseHttpService.getItemByParam(environment.friendEndpoint, id);
   }
 }
