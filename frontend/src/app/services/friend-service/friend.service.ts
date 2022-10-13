@@ -5,7 +5,7 @@ import { IFriendViewModel } from '../../shared/models/viewmodels/IFriendViewMode
 import { environment } from '../../../environments/environment';
 import { BaseHttpService } from '../base-service/base.service';
 import { IFriendRequestModel } from '../../shared/models/requests/IFriendRequestModel';
-import { IFriendResponseModel } from 'src/app/shared/models/responses/IFriendResponseModel';
+import { IFriendResponseModel } from '../../shared/models/responses/IFriendResponseModel';
 
 @Injectable({
   providedIn: 'root',
