@@ -42,4 +42,11 @@ export class FriendService {
       friendAttributes
     );
   }
+
+  deleteFriend(id: number): Observable<IFriendResponseModel> {
+    return this.baseHttpService.deleteItem<IFriendResponseModel>(
+      environment.friendEndpoint,
+      id
+    );
+  }
 }
