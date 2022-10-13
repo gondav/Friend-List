@@ -63,6 +63,40 @@ export const friendController = {
     res.status(201).json({ message: 'Friend added successfully' });
   },
 
+  async updateFriend(req: Request, res: Response, next: NextFunction) {
+    const friendAttributes = req.body;
+    const id = Number(req.params.id);
+
+    if (
+      !friendAttributes ||
+      !friendAttributes.name ||
+      !friendAttributes.email ||
+      !friendAttributes.comment ||
+      !friendAttributes.favFood ||
+      !friendAttributes.relationshipStatusId
+    ) {
+      return next(
+        badRequestError(
+          'Please provide name, email, comment, favorite food and relationship status'
+        )
+      );
+    }
+
+    if (!friendController.checkEmail(friendAttributes.email)) {
+      return next(notAcceptableError('Please enter a valid email address'));
+    }
+
+    const relationshipId = friendAttributes.relationshipId;
+
+    if (relationshipId < 1 || relationshipId > 3) {
+      return next(badRequestError('Relationship id must be 1, 2 or 3'));
+    }
+
+    await friendService.updateFriend(id, friendAttributes);
+
+    res.status(200).json({ message: 'Friend updated successfully' });
+  },
+
   checkEmail(email: string): boolean {
     const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     return emailPattern.test(email);
