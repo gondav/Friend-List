@@ -4,6 +4,8 @@ import { IFriendListResponseModel } from '../../shared/models/responses/IFriendL
 import { IFriendViewModel } from '../../shared/models/viewmodels/IFriendViewModel';
 import { environment } from '../../../environments/environment';
 import { BaseHttpService } from '../base-service/base.service';
+import { IFriendRequestModel } from '../../shared/models/requests/IFriendRequestModel';
+import { IFriendResponseModel } from 'src/app/shared/models/responses/IFriendResponseModel';
 
 @Injectable({
   providedIn: 'root',
@@ -19,5 +21,14 @@ export class FriendService {
 
   getFriend(id: number): Observable<IFriendViewModel> {
     return this.baseHttpService.getItemByParam(environment.friendEndpoint, id);
+  }
+
+  createFriend(
+    friendAttributes: IFriendRequestModel
+  ): Observable<IFriendResponseModel> {
+    return this.baseHttpService.createItem<IFriendResponseModel>(
+      environment.friendEndpoint,
+      friendAttributes
+    );
   }
 }
