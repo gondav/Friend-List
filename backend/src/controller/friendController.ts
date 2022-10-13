@@ -67,6 +67,10 @@ export const friendController = {
     const friendAttributes = req.body;
     const id = Number(req.params.id);
 
+    if (!id || isNaN(id) || id < 1) {
+      return next(badRequestError('Friend id needs to be a positive integer'));
+    }
+
     if (
       !friendAttributes ||
       !friendAttributes.name ||
@@ -95,6 +99,18 @@ export const friendController = {
     await friendService.updateFriend(id, friendAttributes);
 
     res.status(200).json({ message: 'Friend updated successfully' });
+  },
+
+  async deleteFriend(req: Request, res: Response, next: NextFunction) {
+    const id = Number(req.params.id);
+
+    if (!id || isNaN(id) || id < 1) {
+      return next(badRequestError('Friend id needs to be a positive integer'));
+    }
+
+    await friendService.deleteFriend(id);
+
+    res.status(200).json({ message: 'Friend deleted successfully' });
   },
 
   checkEmail(email: string): boolean {
