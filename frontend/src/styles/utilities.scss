@@ -6,3 +6,8 @@
   @extend %flex;
   align-items: center;
 }
+
+.flex-column {
+  @extend %flex;
+  flex-direction: column;
+}
