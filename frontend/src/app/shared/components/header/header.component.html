@@ -1,0 +1,30 @@
+<header>
+  <nav class="flex-align-center">
+    <div class="mob flex-align-center">
+      <div class="hamburger-menu">
+        <i class="fa-solid fa-bars" (click)="toggleMobMenu(mobMenu)"></i>
+      </div>
+    </div>
+    <div class="desktop">
+      <ul class="flex-align-center">
+        <li class="active">
+          <a>FRIENDS</a>
+        </li>
+        <li>
+          <a>EDIT FRIENDS</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="mob-menu-wrapper" #mobMenu>
+    <ul>
+      <li id="mob-nav1">
+        <a>FRIENDS</a>
+      </li>
+      <li id="mob-nav2">
+        <a>EDIT FRIENDS</a>
+      </li>
+    </ul>
+  </div>
+</header>

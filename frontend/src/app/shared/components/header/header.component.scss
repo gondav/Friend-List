@@ -1,0 +1,90 @@
+@import "../../../../styles/config.scss";
+
+$color-mob-nav1: #086280;
+$color-mob-nav2: #0c82a9;
+
+header {
+  nav {
+    height: 80px;
+    background: $color-primary;
+
+    .mob {
+      height: 100%;
+      width: 100%;
+      justify-content: flex-end;
+
+      .hamburger-menu {
+        margin-right: 2rem;
+        font-size: 26px;
+        color: #fff;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .desktop {
+      display: none;
+    }
+  }
+
+  .mob-menu-wrapper {
+    display: none;
+    background: pink;
+
+    li {
+      background: $color-secondary;
+      padding: 1rem 0;
+      text-align: center;
+      color: #fff;
+
+      &#mob-nav1 {
+        background: $color-mob-nav1;
+      }
+
+      &#mob-nav2 {
+        background: $color-mob-nav2;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 426px) {
+  .mob {
+    display: none;
+  }
+
+  .desktop {
+    display: block !important;
+    height: 100%;
+    width: 100%;
+
+    ul {
+      height: inherit;
+      justify-content: center;
+
+      li {
+        margin: 0 1rem;
+        padding: 0.8rem 1.5rem;
+        list-style-type: none;
+        font-weight: 700;
+        border-radius: 0.5rem;
+        color: #fff;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &.active {
+          background: #fff;
+          color: $color-secondary;
+        }
+      }
+    }
+  }
+}

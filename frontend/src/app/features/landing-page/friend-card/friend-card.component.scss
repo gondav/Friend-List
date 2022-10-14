@@ -1,0 +1,67 @@
+@import "../../../../styles/config.scss";
+
+.card-container {
+  margin: 0.5em;
+  justify-content: space-evenly;
+  .fa-solid {
+    color: $color-primary;
+  }
+
+  p {
+    color: #fff;
+  }
+
+  width: 320px;
+  height: 180px;
+  background: $color-secondary;
+
+  .row-edit {
+    justify-content: flex-end;
+    padding: 0.2rem;
+
+    .fa-solid {
+      margin: 0.4rem;
+    }
+  }
+
+  .name-email {
+    flex-direction: column;
+    justify-content: center;
+
+    p#name {
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+
+    .detail {
+      font-size: $font-size-xs;
+
+      .fa-solid {
+        margin: 0.4rem;
+      }
+    }
+  }
+
+  .details {
+    justify-content: space-between;
+    .col-left {
+      .detail {
+        font-size: $font-size-xs;
+
+        .fa-solid {
+          margin: 0.4rem;
+        }
+      }
+    }
+
+    .col-right {
+      max-width: 60%;
+      padding: 0.4rem;
+
+      p {
+        font-size: $font-size-xs;
+        font-style: italic;
+      }
+    }
+  }
+}
