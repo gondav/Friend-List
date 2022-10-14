@@ -1,0 +1,8 @@
+%flex {
+  display: flex;
+}
+
+.flex-align-center {
+  @extend %flex;
+  align-items: center;
+}
