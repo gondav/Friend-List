@@ -41,6 +41,12 @@
         </select>
       </div>
     </div>
-    <button (click)="addNewFriend()" class="btn">Add Friend</button>
+    <button
+      (click)="addNewFriend()"
+      [disabled]="!addFriendForm.valid"
+      class="btn"
+    >
+      Add Friend
+    </button>
   </form>
 </div>
