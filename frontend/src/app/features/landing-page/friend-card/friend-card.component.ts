@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IFriendViewModel } from 'src/app/shared/models/viewmodels/IFriendViewModel';
+import { FriendService } from '../../../services/friend-service/friend.service';
+import { IFriendViewModel } from '../../../shared/models/viewmodels/IFriendViewModel';
 
 @Component({
   selector: 'app-friend-card',
@@ -9,7 +10,11 @@ import { IFriendViewModel } from 'src/app/shared/models/viewmodels/IFriendViewMo
 export class FriendCardComponent implements OnInit {
   @Input() friend: IFriendViewModel;
 
-  constructor() {}
+  constructor(private friendService: FriendService) {}
 
   ngOnInit(): void {}
+
+  deleteFriend(id: number): void {
+    this.friendService.deleteFriend(id);
+  }
 }
