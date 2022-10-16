@@ -22,6 +22,10 @@
 
     .fa-solid {
       margin: 0.4rem;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 
