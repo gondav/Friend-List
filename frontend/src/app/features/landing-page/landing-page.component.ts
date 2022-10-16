@@ -13,11 +13,9 @@ export class LandingPageComponent implements OnInit {
   constructor(private friendService: FriendService) {}
 
   ngOnInit(): void {
-    this.friendService.getFriendList().subscribe({
-      next: (friendList) => {
-        this.friends = friendList;
-      },
-      error: (error) => console.log(error),
-    });
+    this.friendService.getFriendList();
+    this.friendService.friendsObservable.subscribe(
+      (friendList) => (this.friends = friendList)
+    );
   }
 }
