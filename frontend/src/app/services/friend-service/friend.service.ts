@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, BehaviorSubject } from 'rxjs';
 import { IFriendListResponseModel } from '../../shared/models/responses/IFriendListResponseModel';
 import { IFriendViewModel } from '../../shared/models/viewmodels/IFriendViewModel';
 import { environment } from '../../../environments/environment';
@@ -11,12 +11,18 @@ import { IFriendResponseModel } from '../../shared/models/responses/IFriendRespo
   providedIn: 'root',
 })
 export class FriendService {
+  friendsSubject = new BehaviorSubject<IFriendViewModel[]>([]);
+  friendsObservable = this.friendsSubject.asObservable();
+
   constructor(private baseHttpService: BaseHttpService) {}
 
-  getFriendList(): Observable<IFriendViewModel[]> {
-    return this.baseHttpService
+  getFriendList(): void {
+    this.baseHttpService
       .getItems<IFriendListResponseModel>(environment.friendEndpoint)
-      .pipe(map((response) => response.friendList));
+      .pipe(map((response) => response.friendList))
+      .subscribe((friendList: IFriendViewModel[]) =>
+        this.friendsSubject.next(friendList)
+      );
   }
 
   getFriend(id: number): Observable<IFriendViewModel> {
@@ -43,10 +49,13 @@ export class FriendService {
     );
   }
 
-  deleteFriend(id: number): Observable<IFriendResponseModel> {
-    return this.baseHttpService.deleteItem<IFriendResponseModel>(
-      environment.friendEndpoint,
-      id
-    );
+  deleteFriend(id: number): void {
+    this.baseHttpService
+      .deleteItem<IFriendResponseModel>(environment.friendEndpoint, id)
+      .subscribe({
+        next: (res) => console.log(res),
+        error: (err) => console.log(err),
+      });
+    this.getFriendList();
   }
 }
