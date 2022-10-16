@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FriendService } from '../../services/friend-service/friend.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class AddFriendComponent implements OnInit {
   addFriendForm: FormGroup;
   ngSelect = 1;
 
-  constructor(private friendService: FriendService) {}
+  constructor(private friendService: FriendService, private router: Router) {}
 
   ngOnInit(): void {
     this.addFriendForm = new FormGroup({
@@ -25,7 +26,9 @@ export class AddFriendComponent implements OnInit {
 
   addNewFriend(): void {
     this.friendService.createFriend(this.addFriendForm.value).subscribe({
-      next: (response) => console.log(response),
+      next: (_response) => {
+        this.router.navigate(['/friends']);
+      },
       error: (error) => console.log(error),
     });
   }
