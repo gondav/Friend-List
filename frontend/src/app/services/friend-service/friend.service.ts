@@ -53,9 +53,8 @@ export class FriendService {
     this.baseHttpService
       .deleteItem<IFriendResponseModel>(environment.friendEndpoint, id)
       .subscribe({
-        next: (res) => console.log(res),
+        next: (_res) => this.getFriendList(),
         error: (err) => console.log(err),
       });
-    this.getFriendList();
   }
 }
