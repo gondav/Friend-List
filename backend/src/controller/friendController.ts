@@ -32,12 +32,12 @@ export const friendController = {
 
   async createFriend(req: Request, res: Response, next: NextFunction) {
     const friendAttributes = req.body;
+    friendAttributes.comment = friendAttributes.comment || '';
 
     if (
       !friendAttributes ||
       !friendAttributes.name ||
       !friendAttributes.email ||
-      !friendAttributes.comment ||
       !friendAttributes.favFood ||
       !friendAttributes.relationshipStatusId
     ) {
@@ -66,6 +66,7 @@ export const friendController = {
   async updateFriend(req: Request, res: Response, next: NextFunction) {
     const friendAttributes = req.body;
     const id = Number(req.params.id);
+    friendAttributes.comment = friendAttributes.comment || '';
 
     if (!id || isNaN(id) || id < 1) {
       return next(badRequestError('Friend id needs to be a positive integer'));
@@ -75,7 +76,6 @@ export const friendController = {
       !friendAttributes ||
       !friendAttributes.name ||
       !friendAttributes.email ||
-      !friendAttributes.comment ||
       !friendAttributes.favFood ||
       !friendAttributes.relationshipStatusId
     ) {
