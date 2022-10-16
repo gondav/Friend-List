@@ -1,29 +1,29 @@
-<div class="card-container flex-column">
+<div class="card-container flex-column" appBackgroundImg>
   <div class="row-edit flex-align-center">
     <i class="fa-solid fa-user-pen"></i>
     <i class="fa-solid fa-user-xmark"></i>
   </div>
   <div class="name-email flex-align-center">
-    <p id="name">John Doe</p>
+    <p id="name">{{ friend.name }}</p>
     <div class="detail flex-align-center">
       <i class="fa-solid fa-envelope"></i>
-      <p>john.johh.john.doe@email.com</p>
+      <p>{{ friend.email }}</p>
     </div>
   </div>
-  <div class="details flex-align-center">
+  <div class="details">
     <div class="col-left">
       <div class="detail rel-status flex-align-center">
         <i class="fa-solid fa-heart"></i>
-        <p>married</p>
+        <p>{{ friend.relationshipStatus.id | relationshipStatus }}</p>
       </div>
       <div class="detail food flex-align-center">
         <i class="fa-solid fa-bowl-food"></i>
-        <p>pancake</p>
+        <p>{{ friend.food.name }}</p>
       </div>
     </div>
     <div class="col-right">
       <div class="detail">
-        <p>This is a short comment...</p>
+        <p>{{ friend.comment }}</p>
       </div>
     </div>
   </div>
