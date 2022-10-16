@@ -1,0 +1,45 @@
+$input-width: 240px;
+$margin-bottom: 1.2em;
+
+.form-container {
+  height: calc(100vh - 80px);
+  justify-content: center;
+  align-items: center;
+  padding: 16px 8px;
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0.8),
+      rgba(0, 0, 0, 0.8)
+    ),
+    url("https://source.unsplash.com/nYgy58eb9aw");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  h3 {
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: $margin-bottom;
+  }
+
+  .btn,
+  input {
+    width: $input-width;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $margin-bottom;
+
+    &.form-select:hover {
+      cursor: pointer;
+    }
+  }
+
+  button {
+    font-weight: 500;
+    background: #0383ae;
+    color: #fff;
+  }
+}
