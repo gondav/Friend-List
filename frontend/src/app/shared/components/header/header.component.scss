@@ -31,13 +31,22 @@ header {
 
   .mob-menu-wrapper {
     display: none;
-    background: pink;
+
+    ul {
+      margin: 0;
+      padding: 0;
+    }
 
     li {
+      list-style-type: none;
       background: $color-secondary;
       padding: 1rem 0;
       text-align: center;
-      color: #fff;
+
+      a {
+        color: #fff;
+        text-decoration: none;
+      }
 
       &#mob-nav1 {
         background: $color-mob-nav1;
@@ -74,7 +83,11 @@ header {
         list-style-type: none;
         font-weight: 700;
         border-radius: 0.5rem;
-        color: #fff;
+
+        a {
+          text-decoration: none;
+          color: #fff;
+        }
 
         &:hover {
           cursor: pointer;
@@ -82,7 +95,10 @@ header {
 
         &.active {
           background: #fff;
-          color: $color-secondary;
+
+          a {
+            color: $color-secondary;
+          }
         }
       }
     }
