@@ -17,7 +17,7 @@ export class AddFriendComponent implements OnInit {
   ngOnInit(): void {
     this.addFriendForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-      email: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
       comment: new FormControl('', Validators.maxLength(30)),
       favFood: new FormControl('', Validators.required),
       relationshipStatusId: new FormControl('', Validators.required),
