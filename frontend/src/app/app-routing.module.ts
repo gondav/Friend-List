@@ -10,6 +10,13 @@ const routes: Routes = [
         (m) => m.LandingPageModule
       ),
   },
+  {
+    path: 'add-friend',
+    loadChildren: () =>
+      import('../app/features/new-friend/add-friend.module').then(
+        (m) => m.AddFriendModule
+      ),
+  },
 ];
 
 @NgModule({
