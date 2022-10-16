@@ -1,4 +1,4 @@
-<div class="card-container flex-column">
+<div class="card-container flex-column" [ngStyle]="">
   <div class="row-edit flex-align-center">
     <i class="fa-solid fa-user-pen"></i>
     <i class="fa-solid fa-user-xmark"></i>
@@ -14,7 +14,7 @@
     <div class="col-left">
       <div class="detail rel-status flex-align-center">
         <i class="fa-solid fa-heart"></i>
-        <p>{{ friend.relationshipStatus.relationshipStatus }}</p>
+        <p>{{ friend.relationshipStatus.id | relationshipStatus }}</p>
       </div>
       <div class="detail food flex-align-center">
         <i class="fa-solid fa-bowl-food"></i>
